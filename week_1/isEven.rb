@@ -5,6 +5,6 @@ def is_even?(number)
 end
 
 puts "Please enter a number to see if it's even"
-number = gets.to_i
+number = gets.chop.to_i
 
 puts is_even?(number) 
