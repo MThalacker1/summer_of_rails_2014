@@ -1,5 +1,5 @@
 loop = true
-People = []
+people = []
 
 while(loop)
 puts "Would you like to add a person?"
@@ -22,7 +22,7 @@ more = gets.chop
   age: "#{age}"
   }
 
-  People.push(person)
+  people.push(person)
   
   else
     loop = false
