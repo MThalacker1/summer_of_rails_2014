@@ -2,8 +2,8 @@ loop = true
 people = []
 
 while(loop)
-puts "Would you like to add a person?"
-more = gets.chop
+  puts "Would you like to add a person?"
+  more = gets.chop
 
   if more == "yes"
 
@@ -17,14 +17,21 @@ more = gets.chop
     age = gets.chop.to_i
 
     person = {
-    first_name: "#{first_name}",
-    last_name: "#{last_name}",
-    age: "#{age}"
+    first_name: first_name,
+    last_name: last_name,
+    age: age
     }
+
     people.push(person)
+
   else
     loop = false
   end
 end
 
-puts "You added #{people.length} people."
+    people.each do |person|
+      puts "#{person[:first_name]} #{person[:last_name]}"
+      puts "#{person[:age]}"
+    end
+
+
