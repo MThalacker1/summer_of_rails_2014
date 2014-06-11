@@ -42,7 +42,6 @@ rcu.withdraw(75)
 rcu.deposit(20)
 rcu.withdraw(60)
 puts "What would you like to name your account?"
-nam = gets.chop
-rcu.name = nam
+rcu.name = gets.chop 
 rcu.history
 
