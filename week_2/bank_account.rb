@@ -1,29 +1,31 @@
 class BankAccount
   attr_reader :balance
-  attr_accessor :name
-  attr_accessor :msg 
+  attr_accessor :name, :records, :msg
 
   def deposit(amount)
     @balance += amount
-    @msg += "Deposit of #{sprintf("$%.2f", amount)}"
-    @msg += "\n"
+    @msg = "Deposit of #{sprintf("$%.2f", amount)}\n"
+    @records.push("#{self.msg}")
   end
 
   def withdraw(amount)
     @balance -= amount
-    @msg += "Withdrawal of #{sprintf("$%.2f", amount)}"
-    @msg += "\n"
+    @msg = "Withdrawal of #{sprintf("$%.2f", amount)}\n"
+    @records.push("#{self.msg}")
   end
 
   def history
     puts "History for account '#{self.name}':"
-    puts "#{self.msg}"
+    records.each do |record|
+      puts record
+    end
     puts summary
   end
 
   def initialize
     @balance = 0
     @msg = ""
+    @records = []
   end
 
   def to_s
