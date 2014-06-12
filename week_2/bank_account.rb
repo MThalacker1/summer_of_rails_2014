@@ -15,11 +15,12 @@ class BankAccount
   end
 
   def history
-    puts "History for account '#{self.name}':"
+    msg = ""
+    msg += "History for account '#{self.name}':\n"
     records.each do |record|
-      puts record
+      msg += "#{record}"
     end
-    puts summary
+    msg += "#{summary}"
   end
 
   def initialize
@@ -34,7 +35,8 @@ class BankAccount
   end
 
   def summary
-    puts "The account '#{self.name}' has a balance of #{self.to_s}."
+    msg = "The account '#{self.name}' has a balance of #{self.to_s}."
+    msg
   end
 end
 
@@ -45,5 +47,6 @@ rcu.deposit(20)
 rcu.withdraw(60)
 puts "What would you like to name your account?"
 rcu.name = gets.chop 
-rcu.history
+puts rcu.history
+
 
