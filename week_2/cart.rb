@@ -1,5 +1,5 @@
 class Item
-  attr_accessor :name, :price, :qty
+  attr_accessor :name, :price
   def initialize(name = "", price = 0)
     @name = name
     @price = price
@@ -17,19 +17,19 @@ class Cart
 
   def initialize
     @total = 0
-    @qty = 0
-    @selection = ""
     @msg = ""
     @in_cart = []
     @bagged = {}
+    @qty = 0
   end
 
   def add_item(selection)
     in_cart.push(selection)
-      @bagged = Hash.new(0)
-      in_cart.each { |i|
-        @bagged[i] +=1
-        }
+    if @bagged.include? selection
+     @bagged[selection] += 1
+    else
+     @bagged[selection] = 1
+    end
   end
 
   def items
