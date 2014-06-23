@@ -9,10 +9,12 @@ class HomeApp
     [200, {"Content-type" => "text/html"}, [content]]
   end
 end
-
 app = Rack::Builder.new do
   map "/" do
-    run HomeApp.new
+  use Rack::Auth::Basic, "Restricted Area" do |user, password|
+  user == "super" && password == "secretsauce"
+end
+  run HomeApp.new
   end
   map "/about" do
     run AboutApp.new
