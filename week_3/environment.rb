@@ -1,6 +1,6 @@
 require 'rack'
 
-class HelloApp
+class Browser
   def call(env)
     content = env.map {|key, value| "#{key} #{value}"}.sort.join("\n")
     if content.include? "Firefox"
@@ -16,7 +16,7 @@ class HelloApp
   end
 end
 
-app = HelloApp.new
+app = Browser.new
 
 
 server = Rack::Server.new :app => app, :server => "webrick"
