@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS "items" (
 
   get "/items/:id" do
     id = params[:id]
-    results = CONNECTION.execute("select name, price from items where id = #{id}")
+    results = CONNECTION.execute("select name, price from items where id = (?)", [id])
     tablerows = results.collect do |row|
       "<tr><td>#{row[0]}</td><td>#{row[1]}</td></tr>"
     end
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS "items" (
   end
 
   get "/items" do
-    results = CONNECTION.execute("select name, price from items ORDER BY id DESC")
+    results = CONNECTION.execute("select name, price from items ORDER BY id DESC LIMIT 20")
 
     tablerows = results.collect do |row|
       "<tr><td>#{row[0]}</td><td>#{row[1]}</td></tr>"
