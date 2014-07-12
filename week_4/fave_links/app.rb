@@ -1,6 +1,7 @@
-require 'sinatra'
+require 'sinatra/base'
 require 'sqlite3'
 
+class FaveLinks <  Sinatra::Base
 CONNECTION = SQLite3::Database.new("fave_links.sqlite3")
 
 CONNECTION.execute <<-SQL
@@ -22,53 +23,22 @@ post "/links" do
 end
 
 get "/links" do
-  results = CONNECTION.execute("select link, url, description from links ORDER BY ID DESC")
-  tablerows = results.collect do |row|
-    "<tr><td>#{row[0]}</td><td>#{row[1]}</td><td>#{row[2]}</td></tr>"
-  end
-  %Q{
-    <form action="/links" method="POST">
-    <label for="link">Name of Link:</label>
-    <input type="text" name="link" id="link">
-    <label for="url">URL:</label>
-    <input type="text" name="url" id="url">
-    <label for="description">Description:</label>
-    <input type="text" name="description" id="description">
-    <input type="submit">
-    </form>
-    <table>
-      <tr>
-      <th>Title</th>
-      <th>URL</th>
-      <th>Description</th>
-      #{tablerows.join}
-      </table>
-  }
+  @results = CONNECTION.execute("select link, url, description from links ORDER BY ID DESC")
+  erb :links
 end
 
 get "/" do
-  results = CONNECTION.execute("select link, url, description from links ORDER BY ID DESC LIMIT 10")
-  tablerows = results.collect do |row|
-    "<tr><td>#{row[0]}</td><td>#{row[1]}</td><td>#{row[2]}</td></tr>"
-  end
-  %Q{
-    <table>
-      <tr>
-      <th>Title</th>
-      <th>URL</th>
-      <th>Description</th>
-      #{tablerows.join}
-      </table>
-  }
+  @results = CONNECTION.execute("select link, url, description from links ORDER BY ID DESC LIMIT 10")
+  erb :list
 end
 
 get "/links/:id" do
-  id = params[id]
-  results = CONNECTION.execute("select link, url, description from links where ID is equal to #{id}")
-  tablerows = results.collect do |row|
-    "<tr><td>#{row[0]}</td><td>#{row[1]}</td><td>#{row[2]}</td></tr>"
-  end
+  id = params[:id]
+ @results = CONNECTION.execute("select link, url, description from links where ID = (?)", [id])
+  erb :links_id
 end
 
+end
 
-
+      
+  

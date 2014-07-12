@@ -1,0 +1,9 @@
+<table border="3" bordercolor="#474747" bgcolor="#E8B8FF" width="50%" cellspacing="2" cellpadding="3">
+  <tr>
+  <th>Title</th>
+  <th>URL</th>
+  <th>Description</th>
+  <% tablerows = @results.collect do |row| %>
+    <tr><td><%= row[0] %></td><td><%= row[1] %></td><td><%= row[2] %></td></tr>
+<% end %>
+</table>

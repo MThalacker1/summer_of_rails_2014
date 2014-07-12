@@ -1,0 +1,19 @@
+<form action="/links" method="POST">
+    <label for="link">Name of Link:</label>
+    <input type="text" name="link" id="link">
+    <label for="url">URL:</label>
+    <input type="text" name="url" id="url">
+    <label for="description">Description:</label>
+    <input type="text" name="description" id="description">
+    <input type="submit">
+    </form>
+      <table border="3" bordercolor="#474747" bgcolor="#E8B8FF" width="50%" cellspacing="2" cellpadding="3">
+      <tr>
+      <th>Title</th>
+      <th>URL</th>
+      <th>Description</th>
+      </tr>
+      <% @tablerows = @results.collect do |row| %>
+        <tr><td><%= row[0] %></td><td><a href="/"><%= row[1] %></a></td><td><%= row[2] %></td></tr><br>
+      <% end %>
+      </table>
