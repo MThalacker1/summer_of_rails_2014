@@ -7,10 +7,20 @@
       <input type="submit" name="Add">
       </form>
       </fieldset>
+      <table bgcolor="#DDD" cellspacing="1" cellpadding="2">
+      <tr>
+        <th>
+          Item
+        </th>
+        <th>
+          Price
+        </th>
+      </tr>
       <% if @results.length > 0 %>
-        <% tablerows = @results.collect do |row| %>
-        <tr><td><%= row[0] %> </td><td><%= row[1] %></td></tr><br>
+        <% @results.collect do |row| %>
+          <tr><td><%= row[0] %> </td><td><%= row[1] %></td></tr><br>
         <% end %>
       <% else %>
         <p>Sorry, nothing to see here, folks!</p>
       <% end %>
+      </table>

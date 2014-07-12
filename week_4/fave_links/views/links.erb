@@ -14,6 +14,6 @@
       <th>Description</th>
       </tr>
       <% @tablerows = @results.collect do |row| %>
-        <tr><td><%= row[0] %></td><td><a href="/"><%= row[1] %></a></td><td><%= row[2] %></td></tr><br>
+        <tr><td><%= row[0] %></td><td><a href="/links"><%= row[1] %></a></td><td><%= row[2] %></td></tr><br>
       <% end %>
       </table>
